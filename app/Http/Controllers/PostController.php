@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -29,7 +28,8 @@ class PostController extends Controller
 //        $user->load('posts');
 //        $posts = $user->posts;
         $categories = Category::all();
-        return view('admin.post.index', compact('posts', 'categories'));
+        $tags = Tag::all();
+        return view('admin.post.index', compact('posts', 'categories', 'tags'));
     }
 
     /**
@@ -154,8 +154,11 @@ class PostController extends Controller
             $data['image'] = $filename;
 
         }
-       // dd($data);
-        Post::create($data);
+        // dd($data);
+        $post = Post::create($data);
+        if (!empty($request->tag_id)) {
+            $post->tags()->sync($request->tag_id);
+        }
         return redirect('/posts')->with('status', 'Created successful');
     }
 
@@ -194,13 +197,55 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Post $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Post $post)
     {
-        //
+
+
+//        $file_path = public_path('uploads/' . $post->image);
+//
+//        unlink($file_path);
+        $post->delete();
+        return redirect('/posts')->with('status', "Deleted Successfully");
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getTrashPosts()
+    {
+
+        $trashposts = Post::onlyTrashed()->get();
+        return view('admin.post.restore', compact('trashposts'));
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+
+    public function restorePosts($id)
+    {
+
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->restore();
+        return redirect('posts/trash')->with('status', "Restored Successfully");
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function permanentDelete($id)
+    {
+
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->forceDelete();
+        return redirect('posts/trash')->with('status', "Deleted Successfully");
+    }
+
+
 }

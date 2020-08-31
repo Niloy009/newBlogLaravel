@@ -113,6 +113,14 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="tag">Tags</label>
+                            <select multiple class="custom-select" name="tag_id[]">
+                                @foreach($tags as $tag)
+                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                     </div>
                     <div class="modal-footer">

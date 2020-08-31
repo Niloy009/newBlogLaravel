@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +24,10 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
     }
 
     public function comments()

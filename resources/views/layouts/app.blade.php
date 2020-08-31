@@ -53,10 +53,16 @@
                             <a class="nav-link" href="{{ route('categories.index') }}">Category</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tags.index') }}">Tag</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts.index') }}">Post</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('forums.index') }}">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('posts.trash') }}">Post Trash</a>
                         </li>
                     @endauth
                 <!-- Authentication Links -->

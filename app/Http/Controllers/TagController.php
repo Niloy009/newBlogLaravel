@@ -14,7 +14,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::orderBy('id', 'desc')->get();
+        return view('admin.tag.index', compact('tags'));
+
     }
 
     /**
@@ -35,7 +37,9 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Tag::create($request->all());
+
+        return redirect('/tags')->with('status', 'Created successful');
     }
 
     /**
@@ -80,6 +84,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect('/tags')->with('status', 'Deleted successful');
     }
 }
