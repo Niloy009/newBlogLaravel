@@ -14,14 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c64bdb6-2671-41b1-bdc4-920382fbb7ee" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/Forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Forum.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ForumController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ForumController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FrontEndController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FrontEndController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/category/index.blade.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
+>>>>>>> 36dd1ee45571b3e26ae88361d6a7f8313a5aae0b
       <change beforePath="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/post/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,6 +147,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -177,7 +182,14 @@
       <workItem from="1598812431317" duration="755000" />
       <workItem from="1598813570007" duration="1604000" />
       <workItem from="1598815200196" duration="9000" />
+<<<<<<< HEAD
       <workItem from="1598815233311" duration="8087000" />
+=======
+      <workItem from="1598815233311" duration="7898000" />
+      <workItem from="1598800549042" duration="539000" />
+      <workItem from="1598801325341" duration="6542000" />
+      <workItem from="1598812518377" duration="4618000" />
+>>>>>>> 36dd1ee45571b3e26ae88361d6a7f8313a5aae0b
     </task>
     <servers />
   </component>
@@ -200,25 +212,28 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1598818718936">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="592" y="187" key="FileChooserDialogImpl" timestamp="1598801533990">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="592" y="187" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1598801533990" />
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598818718936" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1598527777513">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598527777513" />
-    <state x="461" y="141" key="SettingsEditor" timestamp="1598810037409">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="321" y="0" key="SettingsEditor" timestamp="1598801537433">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="321" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598801537433" />
     <state x="461" y="141" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598810037409" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1598815578928">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598815578928" />
-    <state x="623" y="225" width="840" height="678" key="search.everywhere.popup" timestamp="1598826337674">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="498" y="178" width="840" height="538" key="search.everywhere.popup" timestamp="1598816379459">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="498" y="178" width="840" height="538" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1598816379459" />
     <state x="623" y="225" width="840" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598826337674" />
   </component>
 </project>
