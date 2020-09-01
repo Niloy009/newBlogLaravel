@@ -34,4 +34,6 @@ Route::post('/comments/forum/{forum}', 'CommentController@forumCommentStore')->n
 //tag
 Route::resource('/tags','TagController');
 
+//document
+Route::resource('/documents', 'DocumentController');
 

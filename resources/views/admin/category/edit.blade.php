@@ -11,7 +11,8 @@
                     </div>
 
                     <div class="card-body">
-                        {{Form::open(['route' => ['categories.update', $category->id], 'method' => 'PUT' ])}}
+{{--                        {{Form::open(['route' => ['categories.update', $category->id], 'method' => 'PUT' ])}}--}}
+                        {{Form::open(['url' => ['categories', $category->id], 'method' => 'PUT' ])}}
                         <div class="form-group">
                             <label for="name">Category Name</label>
                             <input type="text" name="name" value="{{$category->name}}" class="form-control" id="name" >

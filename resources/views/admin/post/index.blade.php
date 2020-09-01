@@ -132,7 +132,7 @@
             </div>
         </div>
 
-        <!-- Category Show Modal -->
+        <!-- Post Show Modal -->
         <div class="modal fade" id="postShowModal" tabindex="-1" aria-labelledby="postShowLabel"
              aria-hidden="true">
             <div class="modal-dialog">

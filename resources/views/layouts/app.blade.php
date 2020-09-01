@@ -7,6 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{--    appUrl--}}
+    <meta name="app-url" content="{{ url('/') }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
@@ -43,6 +46,9 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('forum.all') }}">Public Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('documents.index') }}">Document Upload</a>
                     </li>
                 </ul>
 

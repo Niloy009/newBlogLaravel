@@ -188,15 +188,40 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update a post with image
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Post $post
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Post $post
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        if ($request->has('image')) {
+
+            $file_path = public_path('/uploads/' . $post->image);
+            //dd($post->image);
+            if (file_exists($file_path) && !empty($post->image)) {
+                unlink($file_path);
+            }
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); //getting file extension
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/', $filename);
+            $data['image'] = $filename;
+
+        }
+
+
+        $post->update($data);
+
+        if (!empty($request->tag_id)) {
+            $post->tags()->sync($request->tag_id);
+        }
+
+        return redirect('/posts')->with('status', "Updated Successfully");
     }
 
     /**
