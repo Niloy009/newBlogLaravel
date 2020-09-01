@@ -16,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderBy('id', 'desc')->get();
+
+        $posts = Post::with('category:id,name', 'tags')->where('user_id', Auth::id())
+            ->latest()
+            ->get();
 
 //        $user = Auth::User();
 //        $user = User::find(Auth::id());
@@ -231,6 +234,7 @@ class PostController extends Controller
     {
 
         $post = Post::onlyTrashed()->findOrFail($id);
+
         $post->restore();
         return redirect('posts/trash')->with('status', "Restored Successfully");
     }

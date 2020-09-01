@@ -167,6 +167,10 @@
                                 <td id="showPostStatus"></td>
                             </tr>
                             <tr>
+                                <th>Tags</th>
+                                <td id="showPostTags"></td>
+                            </tr>
+                            <tr>
                                 <th>Post Image:</th>
                                 <td id="showPostImage">
                                     {{--                                    <img src="{{asset('uploads/'. $post->image)}}" class="card-img-top" alt="image">--}}
@@ -199,48 +203,73 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {{Form::open(['id' => 'postEditForm', 'method' => 'PUT' ])}}
+                    {{Form::open(['id' => 'postEditForm', 'method' => 'PUT', 'enctype'=>"multipart/form-data"])}}
                     {{--                    {{Form::open(['route' => ['categories.update', $category->id], 'method' => 'PUT' ])}}--}}
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Post title</label>
-                            <input type="text" name="title"  class="form-control" id="editPostTitle">
+                            <label for="title">Post Title</label>
+                            {{--                        <input type="text" name="title" value="{{$post->title}}" class="form-control" id="postEditTitle" >--}}
+                            <input type="text" name="title" class="form-control" id="editPostTitle">
                             <span class="text-danger ">{{$errors->has('title') ? $errors->first('title') : ''}}</span>
                         </div>
                         <div class="form-group">
-                            <label for="name">Post Body</label>
-                            <input type="text" name="body"  class="form-control" id="editPostBody">
+                            <label for="body">Body</label>
+                            {{--                        <input type="textarea" name="body" value="{{$post->body}}" class="form-control" id="body" >--}}
+                            <input type="textarea" name="body" class="form-control" id="editPostBody">
+                            <span class="text-danger ">{{$errors->has('body') ? $errors->first('body') : ''}}</span>
                         </div>
-                        <div class="form-group custom-file">
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                            <input type="file" name="image" value="{{$post->img}}" class="custom-file-input"
-                                   id="inputGroupFile01"
-                                   aria-describedby="inputGroupFileAddon01">
-                        </div>
+                        {{--                    <div class="form-group">--}}
+                        {{--                        <label for="category">Category Name</label>--}}
+                        {{--                        <select class="custom-select" name="category_id">--}}
+                        {{--                            @foreach($categories as $category)--}}
+                        {{--                                <option--}}
+                        {{--                                    value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected' : '' }}>{{$category->name}}</option>--}}
+                        {{--                                   id="editPostCategoryName" value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected' : '' }}></option>--}}
+                        {{--                            @endforeach--}}
+                        {{--                        </select>--}}
+                        {{--                    </div>--}}
                         <div class="form-group">
                             <label for="category">Category Name</label>
-                            <select class="custom-select" name="category_id">
-                                @foreach($categories as $category)
-                                    <option
-                                        value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected' : '' }}>{{$category->name}}</option>
-                                @endforeach
+                            <select class="custom-select" name="category_id" id="editPostCategorySelect">
                             </select>
                         </div>
-                        <div class="form-group ">
 
-                            <label class="d-block">Status</label>
+                        {{--                    <div class="form-group">--}}
+                        {{--                        <label for="tag">Tags</label>--}}
+                        {{--                        <select multiple class="custom-select mb-3" name="tag_id[]">--}}
+                        {{--                            --}}{{--                                <option selected>Select Tag</option>--}}
+                        {{--                            --}}{{--                                @foreach($tags as $tag)--}}
+                        {{--                            --}}{{--                                    <option  value="{{$tag->id}}">{{$tag->name}}</option>--}}
+                        {{--                            --}}{{--                                    <span class="text-danger ">{{$errors->has('tag_id') ? $errors->first('tag_id') : ''}}</span>--}}
+                        {{--                            --}}{{--                                @endforeach--}}
+                        {{--                            @foreach($tags as $id => $tag)--}}
+                        {{--                                <option value="{{$id}}"--}}
+                        {{--                                @foreach($post->tags as $val)--}}
+                        {{--                                    {{$val->id == $id ? 'selected': ''}}--}}
+                        {{--                                    @endforeach >--}}
+                        {{--                                    {{$tag->name}}--}}
+                        {{--                                </option>--}}
+                        {{--                            @endforeach--}}
+                        {{--                        </select>--}}
+                        {{--                    </div>  --}}
 
-                            <label for="editCategoryStatusActive" class="mr-4">
-                                <input class="" type="radio" name="status"  id="editCategoryStatusActive" value="1" checked> Active
-                            </label>
-                            <label for="editCategoryStatusInactive">
-                                <input class="" type="radio" name="status" id="editCategoryStatusInactive" value="0"> Inactive
-                            </label>
+                        <div class="form-group">
+                            <label for="tag">Tags</label>
+                            <select multiple class="custom-select mb-3" name="tag_id[]" id="editPostTagSelect">
+                            </select>
+                        </div>
+
+                        <div class="form-group custom-file">
+                            <label class="custom-file-label">Choose file</label>
+                            <input type="file" name="image" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01">
+                            <img src="" alt="Post image" class="img-fluid h-100 mt-2" id="editPostAvatar">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-primary">Update</button>
-                        <button type="button" class="btn btn-sm btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-sm btn-secondary" data-dismiss="modal">Close
+                        </button>
                     </div>
                     {{Form::close()}}
                 </div>
@@ -266,11 +295,78 @@
                 $('#showPostTitle').html(post.title);
                 $('#showPostBody').html(post.body);
                 $('#showPostCategory').html(post.category.name);
+                $('#showPostTags').html('');
+                // console.log(post.tags);
+                $.each(post.tags, function (index, tag) {
+                    $('#showPostTags').append("<span class='badge badge-success mr-1'>" + tag.name + "</span>")
+                });
+
+
                 $('#image').attr('src', 'uploads/' + post.image);
                 $('#showPostStatus').html(post.status == 1 ? 'Active' : 'Inactive');
                 $('#showPostCreatedAt').html(post.created_at);
                 // Open modal
                 $('#postShowModal').modal('show');
             }
+
+        function openPostEditModal(id) {
+            //find Post
+            let post = posts.find(post => post.id == id);
+
+            //find categories
+            let categories = @json($categories);
+
+            //find tags
+            let tags = @json($tags);
+
+            // console.log(post.tags);
+            // console.log(categories);
+
+
+            // Catch app Url
+            const appUrl = $('meta[name="app-url"]').attr('content');
+            console.log(appUrl);
+            // Dynamic edit form action attribute
+            $('#postEditForm').attr('action', appUrl + '/posts/' + post.id)
+            $('#editPostAvatar').attr('src', appUrl + '/uploads/' + post.image);
+
+            // console.log(appUrl);
+            $('#editPostTitle').val(post.title)
+            $('#editPostBody').val(post.body)
+
+
+            // Populate all categories in option
+            $.each(categories, function (index, category) {
+                $('#editPostCategorySelect').append("<option value='" + category.id + "' >" + category.name + "</option>")
+            });
+            // Dynamically select category start
+            // $(function() {
+            //     $("[name=category_id] option").each(function() {
+            //         if( $(this).prop('value') == post.category_id ) { $(this).prop('selected','selected'); }
+            //     });
+            // });
+
+            //2nd way
+            $('#editPostCategorySelect option[value=' + post.category_id + ']').attr("selected", "selected");
+            // Dynamically select category end
+
+            // Populate all tags in option
+            $.each(tags, function (index, tag) {
+                $('#editPostTagSelect').append("<option   value='" + tag.id + "' >" + tag.name + "</option>")
+            });
+            //1st way
+            // for(var i=0; i< post.tags.length; i++){
+            //     $('#editPostTagSelect option[value='+ tags[i].id+']').attr("selected", "selected");
+            // }
+            //2nd way
+            $.each(post.tags, function (index, tag) {
+                $('#editPostTagSelect option[value=' + tag.id + ']').attr("selected", "selected");
+            });
+
+            //open modal
+            $('#postEditModal').modal('show');
+        }
+
+
     </script>
 @endsection
